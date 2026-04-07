@@ -1,8 +1,14 @@
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
+import { HeadContent, Scripts, createRootRoute, useRouterState, ScrollRestoration } from "@tanstack/react-router"
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools"
 import { TanStackDevtools } from "@tanstack/react-devtools"
 
 import appCss from "../styles.css?url"
+import { Kbd } from "@/components/ui/kbd"
+import ThemeToggle from "@/components/theme-toggle"
+import { SidebarProvider } from "@/components/ui/sidebar"
+import { TooltipProvider } from "@/components/ui/tooltip"
+import { LeftSidebar } from "@/components/left-sidebar"
+import { RightSidebar } from "@/components/right-sidebar"
 
 export const Route = createRootRoute({
   head: () => ({
@@ -15,7 +21,7 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        title: "Const",
       },
     ],
     links: [
@@ -29,24 +35,39 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname })
+  const isLandingPage = pathname === "/"
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <HeadContent />
       </head>
-      <body suppressHydrationWarning>
-        {children}
-        <TanStackDevtools
-          config={{
-            position: "bottom-right",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-          ]}
-        />
+      <body suppressHydrationWarning className="relative">
+        <TooltipProvider>
+          <div className="fixed right-4 top-4 z-50 flex items-center gap-2">
+            <Kbd>d</Kbd>
+            <ThemeToggle />
+          </div>
+          
+          {isLandingPage ? (
+            children
+          ) : (
+            <SidebarProvider>
+              <LeftSidebar />
+              <main className="flex-1 w-full">
+                {children}
+              </main>
+              <RightSidebar />
+            </SidebarProvider>
+          )}
+
+          <TanStackDevtools
+            config={{ position: "bottom-right" }}
+            plugins={[{ name: "Tanstack Router", render: <TanStackRouterDevtoolsPanel /> }]}
+          />
+        </TooltipProvider>
+        <ScrollRestoration />
         <Scripts />
       </body>
     </html>
