@@ -129,3 +129,27 @@
     @apply font-sans;
     }
 }
+
+h1 {
+  @apply scroll-m-20 text-4xl font-extrabold tracking-tight text-balance font-heading border-y border-dashed px-4 py-2;
+}
+
+h2 {
+  @apply scroll-m-20 border-b border-dashed px-4 py-1 text-3xl font-semibold tracking-tight first:mt-0 font-heading;
+}
+
+h3 {
+  @apply scroll-m-20 text-2xl font-semibold tracking-tight font-heading;
+}
+
+h4 {
+  @apply scroll-m-20 text-xl font-semibold tracking-tight font-heading;
+}
+
+p {
+  @apply max-w-7xl leading-7 not-first:mt-3;
+}
+
+section {
+  @apply my-6 px-4 ;
+}
