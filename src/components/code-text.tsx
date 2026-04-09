@@ -3,7 +3,7 @@ import React from 'react'
 
 function CodeText({ children, className }: { children: React.ReactNode, className?: string }) {
   return (
-    <code className={cn("relative rounded bg-muted px-1 py-px font-mono text-sm font-semibold shadow shadow-primary/50", className)}>{children}</code>
+    <code className={cn("relative rounded bg-muted px-1 py-px font-mono text-sm", className)}>{children}</code>
   )
 }
 

@@ -55,7 +55,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           ) : (
             <SidebarProvider>
               <LeftSidebar />
-              <main className="flex-1 w-full">
+              <main className="flex-1 max-w-3xl mx-auto border-x py-16">
                 {children}
               </main>
               <RightSidebar />

@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IntroductionRouteImport } from './routes/introduction'
+import { Route as EngineeringRouteImport } from './routes/engineering'
 import { Route as IndexRouteImport } from './routes/index'
 
 const IntroductionRoute = IntroductionRouteImport.update({
   id: '/introduction',
   path: '/introduction',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EngineeringRoute = EngineeringRouteImport.update({
+  id: '/engineering',
+  path: '/engineering',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/engineering': typeof EngineeringRoute
   '/introduction': typeof IntroductionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/engineering': typeof EngineeringRoute
   '/introduction': typeof IntroductionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/engineering': typeof EngineeringRoute
   '/introduction': typeof IntroductionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/introduction'
+  fullPaths: '/' | '/engineering' | '/introduction'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/introduction'
-  id: '__root__' | '/' | '/introduction'
+  to: '/' | '/engineering' | '/introduction'
+  id: '__root__' | '/' | '/engineering' | '/introduction'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EngineeringRoute: typeof EngineeringRoute
   IntroductionRoute: typeof IntroductionRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/introduction'
       fullPath: '/introduction'
       preLoaderRoute: typeof IntroductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/engineering': {
+      id: '/engineering'
+      path: '/engineering'
+      fullPath: '/engineering'
+      preLoaderRoute: typeof EngineeringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EngineeringRoute: EngineeringRoute,
   IntroductionRoute: IntroductionRoute,
 }
 export const routeTree = rootRouteImport
