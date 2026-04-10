@@ -9,20 +9,21 @@ export function Monaco({ initialCode }: { initialCode: string }) {
   const [editorHeight, setEditorHeight] = useState(100)
 
   const runCode = () => {
-    const logs: string[] = []
-    const originalLog = console.log
-    console.log = (...args) => {
-      logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' '))
-    }
+    setOutput([]) // Clear previous output
     
-    try {
-      new Function(code)()
-    } catch (err: any) {
-      logs.push(`Error: ${err.message}`)
-    } finally {
-      console.log = originalLog
+    const customLog = (...args: any[]) => {
+      const msg = args.map(a => typeof a === 'object' ? JSON.stringify(a) : String(a)).join(' ')
+      setOutput(prev => [...prev, msg])
     }
-    setOutput(logs)
+
+    try {
+      // Create a function that takes 'console' as an argument
+      const runner = new Function('console', code)
+      // Pass our custom console but keep other methods (warn, error, etc.)
+      runner({ ...console, log: customLog })
+    } catch (err: any) {
+      setOutput(prev => [...prev, `Error: ${err.message}`])
+    }
   }
 
   const handleEditorDidMount = (editor: any) => {
