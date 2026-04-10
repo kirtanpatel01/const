@@ -56,7 +56,7 @@ export function EventLoopVisualizer({ steps }: EventLoopVisualizerProps) {
           
           <div className={cn(
             'flex-1 flex flex-col-reverse justify-start items-center gap-2 border-x-2 border-b-2 border-dashed rounded-b-xl p-4 mt-auto transition-colors',
-            current.checking === 'stack' ? 'border-primary/40 bg-primary/[0.02]' : 'border-zinc-200 dark:border-zinc-800'
+            current.checking === 'stack' ? 'border-primary/40 bg-primary/2' : 'border-zinc-200 dark:border-zinc-800'
           )}>
             {current.stack.map((item, i) => (
               <div 
@@ -96,7 +96,7 @@ export function EventLoopVisualizer({ steps }: EventLoopVisualizerProps) {
         {/* Right: Queues & Console (Col 7-12) */}
         <div className='md:col-span-6 grid grid-rows-3 gap-px bg-zinc-200 dark:bg-zinc-800/50'>
            {/* Microtask Queue */}
-           <div className={cn('bg-white dark:bg-zinc-950/40 p-5 flex flex-col transition-colors', current.checking === 'micro' ? 'bg-pink-500/[0.02]' : '')}>
+           <div className={cn('bg-white dark:bg-zinc-950/40 p-5 flex flex-col transition-colors', current.checking === 'micro' ? 'bg-pink-500/2' : '')}>
              <span className={cn('text-xs font-bold transition-colors mb-3', current.checking === 'micro' ? 'text-pink-500 animate-pulse' : 'text-zinc-400')}>Microtask Queue</span>
              <div className='flex items-center gap-2 overflow-x-auto h-full px-2'>
                {current.microQueue.map((task, i) => (
@@ -109,7 +109,7 @@ export function EventLoopVisualizer({ steps }: EventLoopVisualizerProps) {
            </div>
 
            {/* Task Queue */}
-           <div className={cn('bg-white dark:bg-zinc-950/40 p-5 flex flex-col transition-colors', current.checking === 'task' ? 'bg-amber-500/[0.02]' : '')}>
+           <div className={cn('bg-white dark:bg-zinc-950/40 p-5 flex flex-col transition-colors', current.checking === 'task' ? 'bg-amber-500/2' : '')}>
              <span className={cn('text-xs font-bold transition-colors mb-3', current.checking === 'task' ? 'text-amber-500 animate-pulse' : 'text-zinc-400')}>Task Queue</span>
              <div className='flex items-center gap-2 overflow-x-auto h-full px-2'>
                {current.taskQueue.map((task, i) => (

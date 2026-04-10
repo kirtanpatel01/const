@@ -2,7 +2,6 @@ import { Link } from '@tanstack/react-router'
 import { H2, P, Section } from '@/components/typography'
 import CodeText from '@/components/code-text'
 import Quote from '@/components/quote'
-import { Monaco } from '@/components/monacco'
 import { EventLoopVisualizer } from './visualizer'
 import { eventLoopSteps } from './steps'
 
