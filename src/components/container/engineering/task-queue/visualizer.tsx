@@ -27,7 +27,7 @@ export function TaskVisualizer({ steps }: TaskVisualizerProps) {
       {/* Header Controller */}
       <div className='border-b p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-white dark:bg-zinc-900/50'>
         <div className='flex flex-col gap-1'>
-          <h3 className='text-sm font-semibold text-zinc-500'>Execution Flow</h3>
+          <span className='text-sm font-semibold text-zinc-500'>Execution Flow</span>
           <div className='flex items-center gap-3'>
             <div className='flex gap-1'>
               <Button size="sm" variant="secondary" onClick={prev} disabled={step === 0} className="h-8">Previous</Button>
