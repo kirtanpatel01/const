@@ -17,7 +17,7 @@ export function H2({ className, ...props }: React.ComponentProps<"h2">) {
   return (
     <h2
       className={cn(
-        "scroll-m-4 border-b border-dashed px-4 py-1 text-3xl font-semibold tracking-tight first:mt-0 font-heading",
+        "scroll-m-2 border-b border-dashed px-4 py-1 text-3xl font-semibold tracking-tight first:mt-0 font-heading",
         className
       )}
       {...props}

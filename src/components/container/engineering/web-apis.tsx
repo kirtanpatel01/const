@@ -9,10 +9,10 @@ export function WebApis() {
   return (
     <>
       <Link to="/engineering" hash="web-apis">
-        <H2>Web APIs</H2>
+        <H2 id="web-apis">Web APIs</H2>
       </Link>
 
-      <Section id="web-apis">
+      <Section>
         <P>So far everything made sense. JavaScript runs one thing at a time using the call stack. But now comes a problem.</P>
 
         <Monaco

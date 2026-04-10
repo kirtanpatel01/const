@@ -3,7 +3,7 @@ import { H2, P, Section } from '@/components/typography'
 import CodeText from '@/components/code-text'
 import Quote from '@/components/quote'
 import { Monaco } from '@/components/monacco'
-import { StepVisualizer } from '../../../step-visualizer'
+import { StepVisualizer } from './step-visualizer'
 import { loggingSteps, functionCallSteps, overflowSteps } from './steps'
 
 export function CallStack() {
@@ -22,7 +22,7 @@ export function CallStack() {
         </P>
 
         <Monaco
-          initialCode={`console.log("Dragon Ball");\n\nconsole.log("Naruto");\n\nconsole.log("Bleach")\n\nconsole.log("One Piece");`}
+          initialCode={`console.log("I am Justice!");\n\nconsole.log("Shinzo wo Sasageyo!");\n\nconsole.log("Bankai, Tensa Zangetsu!")\n\nconsole.log("Rasengan!");`}
         />
 
         <P>The output is too easy to predict right ? Well yes! But let&apos;s understand how it internally works. The Global Execution Context is created first. Click <b>Next</b> to see the magic ✨</P>
@@ -32,16 +32,16 @@ export function CallStack() {
         <P>Till now we took simple oneline log statements. But what happens when we have multiple function calls ? That&apos;s where you&apos;ll see the LIFO principle of call stack in action.</P>
 
         <Monaco
-          initialCode={`function one() {\n  console.log("One");\n}\n\nfunction two() {\n  one();\n  console.log("Two");\n}\n\nfunction three() {\n  two();\n  console.log("Three");\n}\n\nthree();`}
+          initialCode={`function rumbling() {\n  console.log("TATAKAE!");\n}\n\nfunction erenYeager() {\n  rumbling();\n  console.log("Freedom!");\n}\n\nfunction foundingTitan() {\n  erenYeager();\n  console.log("It is done.");\n}\n\nfoundingTitan();`}
         />
 
         <StepVisualizer steps={functionCallSteps} />
 
         <P>
-          If you followed the visualizer above, you might have noticed something strange. We called <CodeText>three()</CodeText> first, but it was actually the last one to finish. On the other hand, <CodeText>one()</CodeText> was the last function called, but it was the first one to print its output and leave the stack. This is the fundamental way JavaScript manages multiple function calls.
+          If you followed the visualizer above, you might have noticed something strange. We called <CodeText>foundingTitan()</CodeText> first, but it was actually the last one to finish. On the other hand, <CodeText>rumbling()</CodeText> was the last function called, but it was the first one to print its output and leave the stack. This is the fundamental way JavaScript manages multiple function calls.
         </P>
         <P>
-          Think of the Call Stack like a stack of plates in a cafeteria 🍽️. When you add a new plate, it goes on top of the pile. To get to the bottom plate, you have to remove every other plate that was placed on top of it. In our example, when <CodeText>three()</CodeText> calls <CodeText>two()</CodeText>, the engine has to pause and wait for <CodeText>two()</CodeText> to do its job. This chain continues until we hit the top of the stack.
+          Think of the Call Stack like a stack of plates in a cafeteria 🍽️. When you add a new plate, it goes on top of the pile. To get to the bottom plate, you have to remove every other plate that was placed on top of it. In our example, when <CodeText>foundingTitan()</CodeText> calls <CodeText>erenYeager()</CodeText>, the engine has to pause and wait for <CodeText>erenYeager()</CodeText> to do its job. This chain continues until we hit the top of the stack.
         </P>
         <P>
           This behavior is what we call <CodeText className="text-primary font-bold">LIFO</CodeText> (Last In, First Out). The rule is simple: the last function that gets pushed onto the stack is always the first one that the engine executes and removes. This ensures that JavaScript maintains a strict, predictable order of execution and never loses track of where it needs to return once a function call is complete.
@@ -57,13 +57,13 @@ export function CallStack() {
         </P>
 
         <Monaco
-          initialCode={`function recurse() {\n  recurse();\n}\n\nrecurse();`}
+          initialCode={`function shadowClone() {\n  shadowClone();\n}\n\nshadowClone();`}
         />
 
         <StepVisualizer steps={overflowSteps} />
 
         <P>
-          In the code above, <CodeText>recurse()</CodeText> keeps calling itself over and over. It never reaches a point where it can stop and pop itself off the stack. Within milliseconds, thousands of frames are pushed onto the stack, and the browser has to kill the process to save your computer from freezing. This is exactly why you see the <CodeText className="text-destructive font-bold">Uncaught RangeError: Maximum call stack size exceeded</CodeText> in your console.
+          In the code above, <CodeText>shadowClone()</CodeText> keeps calling itself over and over. It never reaches a point where it can stop and pop itself off the stack. Within milliseconds, thousands of frames are pushed onto the stack, and the browser has to kill the process to save your computer from freezing. This is exactly why you see the <CodeText className="text-destructive font-bold">Uncaught RangeError: Maximum call stack size exceeded</CodeText> in your console.
         </P>
       </Section>
     </>

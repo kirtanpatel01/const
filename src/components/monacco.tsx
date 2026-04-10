@@ -74,7 +74,7 @@ export function Monaco({ initialCode }: { initialCode: string }) {
           }
         }}
       />
-      <div className="border-t bg-muted/10 p-2 font-mono text-sm min-h-[100px] whitespace-pre-wrap">
+      <div className="border-t bg-muted/10 p-2 font-mono text-sm min-h-[70px] whitespace-pre-wrap">
         <div className="text-sm font-bold tracking-tight text-muted-foreground mb-2">Console</div>
         {output.length > 0 ? (
           output.map((line, i) => (

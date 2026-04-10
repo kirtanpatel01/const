@@ -10,49 +10,49 @@ export const loggingSteps = [
     output: [] 
   },
   { 
-    message: "Pushing console.log('Dragon Ball') to the top of the stack.", 
-    stack: ["GEC", "log('Dragon Ball')"], 
+    message: "Pushing console.log('I am Justice!') to the stack.", 
+    stack: ["GEC", "log('I am Justice!')"], 
     output: [] 
   },
   { 
-    message: "Executing log('Dragon Ball') - it prints to console and gets popped.", 
+    message: "Executing Light Yagami's catchphrase and popping it.", 
     stack: ["GEC"], 
-    output: ["Dragon Ball"] 
+    output: ["I am Justice!"] 
   },
   { 
-    message: "Pushing console.log('Naruto') to the stack.", 
-    stack: ["GEC", "log('Naruto')"], 
-    output: ["Dragon Ball"] 
+    message: "Pushing console.log('Shinzo wo Sasageyo!') to the stack.", 
+    stack: ["GEC", "log('Shinzo wo Sasageyo!')"], 
+    output: ["I am Justice!"] 
   },
   { 
-    message: "Executing log('Naruto') and popping it.", 
+    message: "Commander Erwin's salute is executed and popped.", 
     stack: ["GEC"], 
-    output: ["Dragon Ball", "Naruto"] 
+    output: ["I am Justice!", "Shinzo wo Sasageyo!"] 
   },
   { 
-    message: "Pushing console.log('Bleach') to the stack.", 
-    stack: ["GEC", "log('Bleach')"], 
-    output: ["Dragon Ball", "Naruto"] 
+    message: "Pushing Ichigo's Bankai to the stack.", 
+    stack: ["GEC", "log('Bankai, Tensa Zangetsu!')"], 
+    output: ["I am Justice!", "Shinzo wo Sasageyo!"] 
   },
   { 
-    message: "Executing log('Bleach') and popping it.", 
+    message: "Bankai is activated and popped.", 
     stack: ["GEC"], 
-    output: ["Dragon Ball", "Naruto", "Bleach"] 
+    output: ["I am Justice!", "Shinzo wo Sasageyo!", "Bankai, Tensa Zangetsu!"] 
   },
   { 
-    message: "Pushing console.log('One Piece') to the stack.", 
-    stack: ["GEC", "log('One Piece')"], 
-    output: ["Dragon Ball", "Naruto", "Bleach"] 
+    message: "Pushing Naruto's Rasengan to the stack.", 
+    stack: ["GEC", "log('Rasengan!')"], 
+    output: ["I am Justice!", "Shinzo wo Sasageyo!", "Bankai, Tensa Zangetsu!"] 
   },
   { 
-    message: "Executing log('One Piece') and popping it.", 
+    message: "Rasengan is executed and popped.", 
     stack: ["GEC"], 
-    output: ["Dragon Ball", "Naruto", "Bleach", "One Piece"] 
+    output: ["I am Justice!", "Shinzo wo Sasageyo!", "Bankai, Tensa Zangetsu!", "Rasengan!"] 
   },
   { 
     message: "Main execution finished. The Global Execution Context is popped.", 
     stack: [], 
-    output: ["Dragon Ball", "Naruto", "Bleach", "One Piece"] 
+    output: ["I am Justice!", "Shinzo wo Sasageyo!", "Bankai, Tensa Zangetsu!", "Rasengan!"] 
   },
 ]
 
@@ -68,69 +68,69 @@ export const functionCallSteps = [
     output: []
   },
   {
-    message: "three() is called. GEC pauses and three() is pushed.",
-    stack: ["GEC", "three()"],
+    message: "foundingTitan() is called. GEC pauses and foundingTitan() is pushed.",
+    stack: ["GEC", "foundingTitan()"],
     output: []
   },
   {
-    message: "Inside three(), two() is called and pushed to the top.",
-    stack: ["GEC", "three()", "two()"],
+    message: "Inside foundingTitan(), erenYeager() is called and pushed.",
+    stack: ["GEC", "foundingTitan()", "erenYeager()"],
     output: []
   },
   {
-    message: "Inside two(), one() is called and pushed to the top.",
-    stack: ["GEC", "three()", "two()", "one()"],
+    message: "Inside erenYeager(), rumbling() is called and pushed.",
+    stack: ["GEC", "foundingTitan()", "erenYeager()", "rumbling()"],
     output: []
   },
   {
-    message: "Inside one(), log('One') is called and pushed.",
-    stack: ["GEC", "three()", "two()", "one()", "log('One')"],
+    message: "Inside rumbling(), log('TATAKAE!') is called and pushed.",
+    stack: ["GEC", "foundingTitan()", "erenYeager()", "rumbling()", "log('TATAKAE!')"],
     output: []
   },
   {
-    message: "log('One') prints 'One' and is popped.",
-    stack: ["GEC", "three()", "two()", "one()"],
-    output: ["One"]
+    message: "TATAKAE! is printed and log() is popped.",
+    stack: ["GEC", "foundingTitan()", "erenYeager()", "rumbling()"],
+    output: ["TATAKAE!"]
   },
   {
-    message: "one() finishes and is popped from the stack.",
-    stack: ["GEC", "three()", "two()"],
-    output: ["One"]
+    message: "rumbling() finishes and is popped from the stack.",
+    stack: ["GEC", "foundingTitan()", "erenYeager()"],
+    output: ["TATAKAE!"]
   },
   {
-    message: "two() resumes and calls log('Two').",
-    stack: ["GEC", "three()", "two()", "log('Two')"],
-    output: ["One"]
+    message: "erenYeager() resumes and calls log('Freedom!').",
+    stack: ["GEC", "foundingTitan()", "erenYeager()", "log('Freedom!')"],
+    output: ["TATAKAE!"]
   },
   {
-    message: "log('Two') prints 'Two' and is popped.",
-    stack: ["GEC", "three()", "two()"],
-    output: ["One", "Two"]
+    message: "Freedom! is printed and log() is popped.",
+    stack: ["GEC", "foundingTitan()", "erenYeager()"],
+    output: ["TATAKAE!", "Freedom!"]
   },
   {
-    message: "two() finishes and is popped from the stack.",
-    stack: ["GEC", "three()"],
-    output: ["One", "Two"]
+    message: "erenYeager() finishes and is popped from the stack.",
+    stack: ["GEC", "foundingTitan()"],
+    output: ["TATAKAE!", "Freedom!"]
   },
   {
-    message: "three() resumes and calls log('Three').",
-    stack: ["GEC", "three()", "log('Three')"],
-    output: ["One", "Two"]
+    message: "foundingTitan() resumes and calls log('It is done.').",
+    stack: ["GEC", "foundingTitan()", "log('It is done.')"],
+    output: ["TATAKAE!", "Freedom!"]
   },
   {
-    message: "log('Three') prints 'Three' and is popped.",
-    stack: ["GEC", "three()"],
-    output: ["One", "Two", "Three"]
+    message: "Final log is printed and popped.",
+    stack: ["GEC", "foundingTitan()"],
+    output: ["TATAKAE!", "Freedom!", "It is done."]
   },
   {
-    message: "three() finishes and is popped from the stack.",
+    message: "foundingTitan() finishes and is popped from stack.",
     stack: ["GEC"],
-    output: ["One", "Two", "Three"]
+    output: ["TATAKAE!", "Freedom!", "It is done."]
   },
   {
     message: "Main execution finished. GEC is popped. Stack is empty.",
     stack: [],
-    output: ["One", "Two", "Three"]
+    output: ["TATAKAE!", "Freedom!", "It is done."]
   }
 ]
 
@@ -146,33 +146,33 @@ export const overflowSteps = [
     output: []
   },
   {
-    message: "recurse() is called and pushed onto the stack.",
-    stack: ["GEC", "recurse()"],
+    message: "shadowClone() is called and pushed onto the stack.",
+    stack: ["GEC", "shadowClone()"],
     output: []
   },
   {
-    message: "recurse() calls itself. A new frame is pushed.",
-    stack: ["GEC", "recurse()", "recurse()"],
+    message: "It creates another clone. A new frame is pushed.",
+    stack: ["GEC", "shadowClone()", "shadowClone()"],
     output: []
   },
   {
-    message: "It calls itself again. The stack is growing...",
-    stack: ["GEC", "recurse()", "recurse()", "recurse()"],
+    message: "More clones! The stack is growing too fast...",
+    stack: ["GEC", "shadowClone()", "shadowClone()", "shadowClone()"],
     output: []
   },
   {
-    message: "And again. Each call sits on top of the previous one.",
-    stack: ["GEC", "recurse()", "recurse()", "recurse()", "recurse()"],
+    message: "Too many clones. Each one takes up memory.",
+    stack: ["GEC", "shadowClone()", "shadowClone()", "shadowClone()", "shadowClone()"],
     output: []
   },
   {
-    message: "Filling up... This continues thousands of times.",
-    stack: ["GEC", "...", "recurse()", "recurse()", "recurse()", "recurse()"],
+    message: "Memory limit reached... It's over 9000!!!",
+    stack: ["GEC", "...", "shadowClone()", "shadowClone()", "shadowClone()", "shadowClone()"],
     output: []
   },
   {
-    message: "CRASH! The stack's physical memory limit is hit. JavaScript throws a RangeError and kills the process.",
-    stack: ["GEC", "...", "recurse()", "recurse()", "recurse()", "recurse()"],
+    message: "CRASH! The browser ran out of chakra (memory).",
+    stack: ["GEC", "...", "shadowClone()", "shadowClone()", "shadowClone()", "shadowClone()"],
     output: ["Uncaught RangeError: Maximum call stack size exceeded"]
   }
 ]
