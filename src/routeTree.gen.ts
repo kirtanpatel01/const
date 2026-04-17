@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IntroductionRouteImport } from './routes/introduction'
+import { Route as FundamentalsRouteImport } from './routes/fundamentals'
 import { Route as EngineeringRouteImport } from './routes/engineering'
 import { Route as IndexRouteImport } from './routes/index'
 
 const IntroductionRoute = IntroductionRouteImport.update({
   id: '/introduction',
   path: '/introduction',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FundamentalsRoute = FundamentalsRouteImport.update({
+  id: '/fundamentals',
+  path: '/fundamentals',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EngineeringRoute = EngineeringRouteImport.update({
@@ -32,30 +38,34 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/engineering': typeof EngineeringRoute
+  '/fundamentals': typeof FundamentalsRoute
   '/introduction': typeof IntroductionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/engineering': typeof EngineeringRoute
+  '/fundamentals': typeof FundamentalsRoute
   '/introduction': typeof IntroductionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/engineering': typeof EngineeringRoute
+  '/fundamentals': typeof FundamentalsRoute
   '/introduction': typeof IntroductionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/engineering' | '/introduction'
+  fullPaths: '/' | '/engineering' | '/fundamentals' | '/introduction'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/engineering' | '/introduction'
-  id: '__root__' | '/' | '/engineering' | '/introduction'
+  to: '/' | '/engineering' | '/fundamentals' | '/introduction'
+  id: '__root__' | '/' | '/engineering' | '/fundamentals' | '/introduction'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EngineeringRoute: typeof EngineeringRoute
+  FundamentalsRoute: typeof FundamentalsRoute
   IntroductionRoute: typeof IntroductionRoute
 }
 
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/introduction'
       fullPath: '/introduction'
       preLoaderRoute: typeof IntroductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fundamentals': {
+      id: '/fundamentals'
+      path: '/fundamentals'
+      fullPath: '/fundamentals'
+      preLoaderRoute: typeof FundamentalsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/engineering': {
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EngineeringRoute: EngineeringRoute,
+  FundamentalsRoute: FundamentalsRoute,
   IntroductionRoute: IntroductionRoute,
 }
 export const routeTree = rootRouteImport

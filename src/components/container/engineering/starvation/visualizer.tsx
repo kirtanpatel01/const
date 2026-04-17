@@ -23,7 +23,7 @@ export function StarvationVisualizer({ steps }: StarvationVisualizerProps) {
   const prev = () => setStep((s) => Math.max(0, s - 1))
 
   return (
-    <div className='w-full border rounded-2xl my-6 overflow-hidden bg-zinc-50 dark:bg-zinc-950/50 flex flex-col h-[750px] shadow-sm'>
+    <div className='w-full border rounded-2xl my-6 overflow-hidden bg-zinc-50 dark:bg-zinc-950/50 flex flex-col h-187.5 shadow-sm'>
       {/* Header Controller */}
       <div className='border-b p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-white dark:bg-zinc-900/50'>
         <div className='flex flex-col gap-1'>

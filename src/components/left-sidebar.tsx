@@ -19,6 +19,10 @@ const items = [
     title: "Engineering",
     url: "/engineering",
   },
+  {
+    title: "Fundamentals",
+    url: "/fundamentals",
+  }
 ]
 
 export function LeftSidebar() {
