@@ -30,6 +30,18 @@ export const Route = createRootRoute({
         href: appCss,
       },
     ],
+    scripts: [
+      {
+        children: `(function() {
+          const isDark = 
+            localStorage.theme === "dark" || 
+            (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          if (isDark) {
+            document.documentElement.classList.add("dark");
+          }
+        })();`,
+      },
+    ],
   }),
   shellComponent: RootDocument,
 })

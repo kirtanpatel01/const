@@ -53,7 +53,7 @@ export function CallStack() {
 
         <P className='mt-8 font-bold text-lg'>Stack Overflow: When the stack breaks</P>
         <P>
-          The Call Stack has a physical limit. It can only hold a certain amount of memory before it gives up. The most common way to hit this limit is through something called recursion—which is just a fancy word for a function calling itself.
+          The Call Stack has a physical limit. It can only hold a certain amount of memory before it gives up. The most common way to hit this limit is through something called recursion, which is just a fancy word for a function calling itself.
         </P>
 
         <Monaco

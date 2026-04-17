@@ -10,9 +10,9 @@ export function FunctionExecutionContext() {
   return (
     <>
       <Link to="/engineering" hash="function-execution-context">
-        <H2>Function Execution Context</H2>
+        <H2 id="function-execution-context">Function Execution Context</H2>
       </Link>
-      <Section id="function-execution-context">
+      <Section>
         <P>Till now everything was happening inside the global execution context. But what happens when a function is called?</P>
         <Monaco initialCode={funcAnime} />
         <P>What do you think this will print?</P>

@@ -21,11 +21,13 @@ export function RightSidebar() {
   const [tocRoutes, setTocRoutes] = useState<{ title: string; url: string; items?: { title: string; url: string }[] }[]>([])
   const [activeId, setActiveId] = useState<string>("")
 
+  // Build TOC on route change
   useEffect(() => {
-    let observer: IntersectionObserver | null = null
+    // Reset active ID when pathname changes
+    setActiveId("")
 
-    // We add a tiny delay to allow the new route's DOM to firmly mount
-    const timer = setTimeout(() => {
+    // Use requestAnimationFrame to ensure DOM is fully painted
+    const buildToc = () => {
       // Find all h2 and h3 elements strictly within the `<main>` tag to avoid pulling sidebar elements
       const headings = Array.from(document.querySelectorAll("main h2, main h3")) as HTMLElement[]
       
@@ -54,30 +56,55 @@ export function RightSidebar() {
       })
 
       setTocRoutes(newToc)
+    }
 
-      // Set up Intersection Observer to track which heading is currently active on screen
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveId(entry.target.id)
-            }
-          })
-        },
-        { rootMargin: "0px 0px -97% 0px" } // Triggers slightly before hitting top
-      )
+    // Wait for next paint, then check again to ensure content is rendered
+    requestAnimationFrame(() => {
+      requestAnimationFrame(buildToc)
+    })
+  }, [pathname])
 
-      headings.forEach((heading) => {
-        observer?.observe(heading)
-      })
+  // Set up scroll listener to track active heading
+  useEffect(() => {
+    const headings = Array.from(document.querySelectorAll("main h2, main h3")) as HTMLElement[]
+    
+    if (headings.length === 0) return
 
-    }, 100)
+    const handleScroll = () => {
+      let active = ""
+      
+      // Find the heading closest to the top of the viewport
+      for (let i = headings.length - 1; i >= 0; i--) {
+        if (headings[i].getBoundingClientRect().top <= 100) {
+          active = headings[i].id
+          break
+        }
+      }
+      
+      setActiveId(active)
+    }
+
+    // Listen to scroll events with throttling
+    let ticking = false
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener("scroll", onScroll)
+    
+    // Initial check
+    handleScroll()
 
     return () => {
-      clearTimeout(timer)
-      if (observer) observer.disconnect()
+      window.removeEventListener("scroll", onScroll)
     }
-  }, [pathname])
+  }, [tocRoutes]) // Re-setup when TOC changes
 
   return (
     <Sidebar side="right" collapsible="none" className="sticky top-0 h-svh bg-sidebar/5">

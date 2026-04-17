@@ -33,7 +33,7 @@ export function Starvation() {
         <StarvationVisualizer steps={starvationSteps} />
 
         <P>
-          In the visualization above, you can see how the Task Queue (the amber box) is completely ignored. Because the browser handles UI updates—like redrawing a button or processing a click—using the Task Queue, your entire application becomes completely unresponsive. This is exactly why you should be very careful when chaining Promises or using recursion in an asynchronous context.
+          In the visualization above, you can see how the Task Queue (the amber box) is completely ignored. Because the browser handles UI updates, like redrawing a button or processing a click, using the Task Queue, your entire application becomes completely unresponsive. This is exactly why you should be very careful when chaining Promises or using recursion in an asynchronous context.
         </P>
 
         <Quote>
