@@ -22,7 +22,11 @@ const items = [
   {
     title: "Fundamentals",
     url: "/fundamentals",
-  }
+  },
+  {
+    title: "Operations",
+    url: "/operations",
+  },
 ]
 
 export function LeftSidebar() {

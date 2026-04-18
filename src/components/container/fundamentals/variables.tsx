@@ -1,7 +1,6 @@
 import CodeText from '@/components/code-text'
 import { Monaco } from '@/components/monacco'
-import Quote from '@/components/quote'
-import { H2, H3, H4, P, Section } from '@/components/typography'
+import { H2, H3, P, Section } from '@/components/typography'
 import { Link } from '@tanstack/react-router'
 
 function Variables() {
